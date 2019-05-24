@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sekorm.smprog.dao.ProgramElementMapper">
+  <resultMap id="BaseResultMap" type="com.sekorm.smprog.model.ProgramElement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="on_id" jdbcType="INTEGER" property="onId" />
+    <result column="template_code" jdbcType="INTEGER" property="templateCode" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="work_hours" jdbcType="DECIMAL" property="workHours" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sekorm.smprog.model.ProgramElement">
+    <result column="extend_tribute" jdbcType="LONGVARCHAR" property="extendTribute" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, on_id, template_code, price, total_price, work_hours, creator_name, creator, 
+    create_time, updator, update_name, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    extend_tribute
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_program_element
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_program_element
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" parameterType="com.sekorm.smprog.model.ProgramElement">
+    insert into t_program_element (id, on_id, template_code, 
+      price, total_price, work_hours, 
+      creator_name, creator, create_time, 
+      updator, update_name, update_time, 
+      extend_tribute)
+    values (#{id,jdbcType=INTEGER}, #{onId,jdbcType=INTEGER}, #{templateCode,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, #{workHours,jdbcType=DECIMAL}, 
+      #{creatorName,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updator,jdbcType=INTEGER}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{extendTribute,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sekorm.smprog.model.ProgramElement">
+    insert into t_program_element
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="onId != null">
+        on_id,
+      </if>
+      <if test="templateCode != null">
+        template_code,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="workHours != null">
+        work_hours,
+      </if>
+      <if test="creatorName != null">
+        creator_name,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="extendTribute != null">
+        extend_tribute,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="onId != null">
+        #{onId,jdbcType=INTEGER},
+      </if>
+      <if test="templateCode != null">
+        #{templateCode,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="workHours != null">
+        #{workHours,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extendTribute != null">
+        #{extendTribute,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sekorm.smprog.model.ProgramElement">
+    update t_program_element
+    <set>
+      <if test="onId != null">
+        on_id = #{onId,jdbcType=INTEGER},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="workHours != null">
+        work_hours = #{workHours,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extendTribute != null">
+        extend_tribute = #{extendTribute,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sekorm.smprog.model.ProgramElement">
+    update t_program_element
+    set on_id = #{onId,jdbcType=INTEGER},
+      template_code = #{templateCode,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      work_hours = #{workHours,jdbcType=DECIMAL},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+       = #{extendTribute,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sekorm.smprog.model.ProgramElement">
+    update t_program_element
+    set on_id = #{onIextend_tributed,jdbcType=INTEGER},
+      template_code = #{templateCode,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      work_hours = #{workHours,jdbcType=DECIMAL},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteByOnId" >
+     delete from t_program_element where on_id = #{onId}
+  </delete>
+
+  <select id="getProgramElements" resultType="java.util.Map">
+    select
+     id, on_id onId, template_code templateCode,price,
+     total_price totalPrice,work_hours workHours,extend_tribute extendTribute
+    from t_program_element t
+    where  t.on_id = #{onId}
+    order by id desc
+    limit 1
+  </select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+	<context:component-scan base-package="com.sekorm.smprog.controller,com.sekorm.common.spms.*" />
+	<!-- 
+	<context:property-placeholder location="classpath:system.properties" ignore-unresolvable="true" />
+	<context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true" />
+	-->
+	
+	<bean class="com.sekorm.common.spms.config.MysqlPropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:system.properties</value>
+				<value>classpath:config.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="prefix">
+			<value>/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- 启动Mq -->
+	<!--<bean id="mQInitialization" class="com.sekorm.common.spms.filter.MQInitialization" />
+	<bean id="mqBootstrap" class="com.sekorm.core.task.Bootstrap" />-->
+	<bean id="applicationContext" class="com.sekorm.common.spms.util.SpringContextUtils" />
+	
+	<!--同时注册了id为”ConversionService“和mvc:resources的问题。把”ConversionService“的bean id修改成另一个名称，就不会报错了(debug 级别)
+        :Failed to convert from type java.util.ArrayList<?> to type java.util.List<org.springframework.core.io.Resource>
+        -->
+	<mvc:annotation-driven conversion-service="conversionServiceOther">
+        <mvc:message-converters register-defaults="true">
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+            <bean   class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="objectMapper">
+                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+	                     <property name="dateFormat">
+		                     <bean class="java.text.SimpleDateFormat">
+		                         <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+		                     </bean>
+	                     </property>
+	                 </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+	<!-- 入参时间自定义格式转换 -->
+
+	<bean id="conversionServiceOther" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<ref bean="dateConvert"/>
+			</set>
+		</property>
+	</bean>
+	<bean id="dateConvert" class="com.sekorm.common.config.DateConvert"/>
+
+
+
+	<mvc:default-servlet-handler />
+	<mvc:resources location="/" mapping="/**" />
+
+	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+
+</beans>

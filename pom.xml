@@ -1,0 +1,31 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+  <parent>
+  	<groupId>com.sekorm.spms</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0</version>
+  
+  </parent>
+    	
+	<groupId>com.sekorm.smprog</groupId>
+	<artifactId>smprog-parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>smprog-parent</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>smprog</module>
+		<module>ismprog</module>
+		<module>ismprog-declare</module>
+		<module>smprog-service</module>
+	</modules>
+
+	<dependencies>
+		
+	</dependencies>
+</project>

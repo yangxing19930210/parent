@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		   http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd  
+        	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="com.sekorm.smprog.service,com.sekorm.common.*" />
+	
+	<import resource="classpath:spring/spring-mybatis.xml" />
+	
+	<!--  
+	<context:property-placeholder location="classpath:system.properties" ignore-unresolvable="true" />
+	<context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true" />
+	-->
+	
+	<bean class="com.sekorm.common.spms.config.MysqlPropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+			    <value>classpath:jdbc.properties</value>
+				<value>classpath:system.properties</value>
+				<value>classpath:config.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>	
+		
+	<!-- MQ生产者注解支持 -->
+	<bean id="mQInitialization" class="com.sekorm.common.spms.filter.MQInitialization" />
+	
+	<!--启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
+	<!-- <cache:annotation-driven cache-manager="ehCacheManager" /> -->
+	<!-- <import resource="classpath:spring/spring-ehcache.xml" /> -->
+	<!-- <bean id="jobFactory" class="com.sekorm.common.ecm.component.job.QuartzSpringBeanJobFactory"></bean>
+	<bean id="schedulerFactoryBean"	class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobFactory" ref="jobFactory"></property>
+		<property name="autoStartup" value="true"/>
+	</bean>
+	<bean id="quartzManager" class="com.sekorm.common.ecm.component.job.QuartzManager"></bean> -->
+	
+	
+
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+</beans>

@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sekorm.smprog</groupId>
+		<artifactId>smprog-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<groupId>com.sekorm.smprog</groupId>
+	<artifactId>smprog-service</artifactId>
+	<version>190115</version>
+	<packaging>jar</packaging>
+	<name>smprog-service</name>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.sekorm.oms</groupId>
+			<artifactId>ioms-declare</artifactId>
+			<version>190115</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<!--物流中心的服务-->
+		<dependency>
+			<groupId>com.sekorm.lgts</groupId>
+			<artifactId>ilgts-declare</artifactId>
+			<version>190115</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sekorm.sums</groupId>
+			<artifactId>isums-declare</artifactId>
+			<version>180627</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sekorm.pn</groupId>
+			<artifactId>ipn-declare</artifactId>
+			<version>190115</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<!-- 打包的名字 -->
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			
+		</plugins>
+	</build>
+
+</project>

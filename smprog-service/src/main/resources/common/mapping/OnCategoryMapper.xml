@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sekorm.smprog.dao.OnCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.sekorm.smprog.model.OnCategory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sp_id" jdbcType="INTEGER" property="spId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="on_id" jdbcType="INTEGER" property="onId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="template_code" jdbcType="INTEGER" property="templateCode" />
+    <result column="operate_type" jdbcType="SMALLINT" property="operateType" />
+    <result column="ecm_operate_type" jdbcType="SMALLINT" property="ecmOperateType" />
+    <result column="verify_status" jdbcType="SMALLINT" property="verifyStatus" />
+    <result column="verify_desc" jdbcType="VARCHAR" property="verifyDesc" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sp_id, order_number, on_id, category_id, template_code, operate_type, ecm_operate_type,verify_status,
+    verify_desc, creator_name, creator, create_time, updator, update_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_on_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_on_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sekorm.smprog.model.OnCategory">
+    insert into t_on_category (id, sp_id, order_number,
+      on_id, category_id, template_code,
+      operate_type,ecm_operate_type, verify_status, verify_desc,
+      creator_name, creator, create_time,
+      updator, update_name, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{spId,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR},
+      #{onId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{templateCode,jdbcType=INTEGER},
+      #{operateType,jdbcType=SMALLINT}, #{ecmOperateType,jdbcType=SMALLINT}, #{verifyStatus,jdbcType=SMALLINT}, #{verifyDesc,jdbcType=VARCHAR},
+      #{creatorName,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updator,jdbcType=INTEGER}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sekorm.smprog.model.OnCategory">
+    insert into t_on_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="spId != null">
+        sp_id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="onId != null">
+        on_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="templateCode != null">
+        template_code,
+      </if>
+      <if test="operateType != null">
+        operate_type,
+      </if>
+      <if test="ecmOperateType != null">
+        ecm_operate_type,
+      </if>
+      <if test="verifyStatus != null">
+        verify_status,
+      </if>
+      <if test="verifyDesc != null">
+        verify_desc,
+      </if>
+      <if test="creatorName != null">
+        creator_name,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="spId != null">
+        #{spId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="onId != null">
+        #{onId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="templateCode != null">
+        #{templateCode,jdbcType=INTEGER},
+      </if>
+      <if test="operateType != null">
+        #{operateType,jdbcType=SMALLINT},
+      </if>
+      <if test="ecmOperateType != null">
+        #{ecmOperateType,jdbcType=SMALLINT},
+      </if>
+      <if test="verifyStatus != null">
+        #{verifyStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="verifyDesc != null">
+        #{verifyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sekorm.smprog.model.OnCategory">
+    update t_on_category
+    <set>
+      <if test="spId != null">
+        sp_id = #{spId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="onId != null">
+        on_id = #{onId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode,jdbcType=INTEGER},
+      </if>
+      <if test="operateType != null">
+        operate_type = #{operateType,jdbcType=SMALLINT},
+      </if>
+      <if test="ecmOperateType != null">
+        ecm_operate_type = #{ecmOperateType,jdbcType=SMALLINT},
+      </if>
+      <if test="verifyStatus != null">
+        verify_status = #{verifyStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="verifyDesc != null">
+        verify_desc = #{verifyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sekorm.smprog.model.OnCategory">
+    update t_on_category
+    set sp_id = #{spId,jdbcType=INTEGER},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      on_id = #{onId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      template_code = #{templateCode,jdbcType=INTEGER},
+      operate_type = #{operateType,jdbcType=SMALLINT},
+      ecm_operate_type = #{ecmOperateType,jdbcType=SMALLINT},
+      verify_status = #{verifyStatus,jdbcType=SMALLINT},
+      verify_desc = #{verifyDesc,jdbcType=VARCHAR},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <sql id="pendAddOnCondition" >
+    <trim prefix="where" prefixOverrides="and | or">
+        and oi.id not in (select on_id from t_on_category where category_id =#{searchVO.categoryId})
+      <if test="searchVO.brandName != null and searchVO.brandName != '' ">
+        and oi.brand_name =#{searchVO.brandName}
+      </if>
+      <if test="searchVO.productWire != null  and searchVO.productWire != '' ">
+        and oi.product_wire =#{searchVO.productWire}
+      </if>
+      <if test="searchVO.orderNumber != null  and searchVO.orderNumber != '' ">
+        and oi.order_number like concat('%',#{searchVO.orderNumber},'%')
+      </if>
+      and oi.sp_id =#{searchVO.spId}
+      and oi.ecm_online_status in (1,2,3)
+    </trim>
+  </sql>
+
+  <sql id="pageCondition" >
+   <trim prefix="where" prefixOverrides="and | or">
+      and oc.sp_id =#{searchVO.spId}
+      and oc.category_id =#{searchVO.categoryId}
+    <if test="searchVO.brandName != null and searchVO.brandName != ''">
+      and oi.brand_name =#{searchVO.brandName}
+    </if>
+    <if test="searchVO.productWire != null and searchVO.productWire != '' ">
+      and oi.product_wire =#{searchVO.productWire}
+    </if>
+    <if test="searchVO.orderNumber != null and searchVO.orderNumber != '' ">
+      and oi.order_number like concat('%',#{searchVO.orderNumber},'%')
+    </if>
+    <if test="searchVO.ecmOperateType != null and searchVO.ecmOperateType.size() > 0">
+      and oc.ecm_operate_type in
+      <foreach collection="searchVO.ecmOperateType" open="(" separator="," close=")" item="item">
+        #{item}
+      </foreach>
+    </if>
+    <if test="searchVO.verifyStatus != null and searchVO.verifyStatus.size() > 0">
+      and oc.verify_status in
+      <foreach collection="searchVO.verifyStatus" open="(" separator="," close=")" item="item">
+        #{item}
+      </foreach>
+    </if>
+    <if test="searchVO.associateType != null">
+     <if test="searchVO.associateType == 0">
+       and oc.template_code  is null
+     </if>
+      <if test="searchVO.associateType == 1">
+        and oc.template_code  is not null
+      </if>
+      <if test="searchVO.associateType == 2">
+
+      </if>
+    </if>
+   </trim>
+  </sql>
+
+  <select id="getPageListCount" resultType="java.lang.Integer">
+    select
+       count(oc.id)
+    from t_on_category oc
+    left join t_on_info oi  on  oc.on_id = oi.id
+    <include refid="pageCondition"/>
+  </select>
+  <select id="getPageList" resultType="java.util.Map">
+    select
+      oc.id,
+      oc.on_id onId,
+      oc.template_code templateCode,
+      oi.order_number orderNumber,
+      oi.brand_name brandName,
+      oi.product_wire productWire,
+      oc.operate_type operateType,
+      oc.ecm_operate_type ecmOperateType,
+      oc.verify_status verifyStatus,
+      oc.creator_name creatorName,
+      oc.update_name updateName,
+      oc.update_time updateTime
+    from t_on_category oc
+    left join t_on_info oi  on  oc.on_id = oi.id
+    <include refid="pageCondition"/>
+    order by  oc.update_time desc
+    <if test="searchVO.iDisplayStart != null and searchVO.iDisplayLength != null">
+      limit #{searchVO.iDisplayStart} , #{searchVO.iDisplayLength}
+    </if>
+  </select>
+  <select id="getPendAddOnListCount" resultType="java.lang.Integer">
+    select
+      count(oi.id)
+    from t_on_info oi
+    <include refid="pendAddOnCondition"/>
+  </select>
+  <select id="getPendAddOnList" resultType="java.util.Map">
+    select
+      oi.id onId,
+      oi.order_number orderNumber,
+      oi.brand_name brandName,
+      oi.product_wire productWire
+    from t_on_info oi
+    <include refid="pendAddOnCondition"/>
+    <if test="searchVO.iDisplayStart != null and searchVO.iDisplayLength != null">
+      limit #{searchVO.iDisplayStart} , #{searchVO.iDisplayLength}
+    </if>
+  </select>
+  <select id="relateCateCount" resultType="java.lang.Integer">
+	select count(1) from t_on_category a where a.category_id = #{categoryId,jdbcType=INTEGER} 
+  </select>
+
+    <update id="updateVerifyStatus">
+   	update t_on_category
+    set verify_status = #{record.verifyStatus,jdbcType=SMALLINT},
+      verify_desc = #{record.verifyDesc,jdbcType=VARCHAR},
+      ecm_operate_type = #{record.ecmOperateType,jdbcType=SMALLINT}
+    where sp_id = #{record.spId,jdbcType=INTEGER}
+    	and order_number = #{record.orderNumber,jdbcType=VARCHAR}
+    	and category_id = #{record.categoryId,jdbcType=INTEGER} 
+  </update>
+  <update id="updateTemplateCodeByOnId">
+    update t_on_category
+    set template_code = #{templateCode}
+    where on_id = #{onId} and category_id = #{categoryId}
+  </update>
+
+
+  <select id="getCategoryByOnId" resultMap="BaseResultMap">
+    /*master*/
+    select
+    <include refid="Base_Column_List" />
+    from t_on_category
+    where  on_id = #{onId}  and category_id = #{categoryId}
+  </select>
+</mapper>

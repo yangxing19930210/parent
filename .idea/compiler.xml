@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ismprog" />
+        <module name="smprog-service" />
+        <module name="ismprog-declare" />
+        <module name="smprog" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="7">
+      <module name="ismprog" target="1.8" />
+      <module name="ismprog-declare" target="1.8" />
+      <module name="smprog" target="1.8" />
+      <module name="smprog-parent" target="1.8" />
+      <module name="smprog-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

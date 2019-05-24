@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ismprog/ismprog.iml" filepath="$PROJECT_DIR$/ismprog/ismprog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ismprog-declare/ismprog-declare.iml" filepath="$PROJECT_DIR$/ismprog-declare/ismprog-declare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smprog/smprog.iml" filepath="$PROJECT_DIR$/smprog/smprog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smprog-parent.iml" filepath="$PROJECT_DIR$/smprog-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smprog-service/smprog-service.iml" filepath="$PROJECT_DIR$/smprog-service/smprog-service.iml" />
+    </modules>
+  </component>
+</project>
